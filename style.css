@@ -1,14 +1,3 @@
-/*Pagelines stuff*/
-
-#section-parallex-slider .content{
-	width:100% !important;
-	min-width:100% !important;
-}
-
-#section-parallex-slider .content-pad{
-	padding:0px;
-}
-/* Slider Style */
 .pxs_container{
 	width:100%;
 	position:relative;

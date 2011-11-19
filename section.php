@@ -6,7 +6,7 @@
 	Version: 0.2
 	Description: Awesome slider for your featured post
 	Class Name: TmParallaxSlider
-	Cloning: true
+	Cloning: false
 	Demo: http://dev.tmeister.net
  	External: http://dev.tmeister.net
  	Long: Parallax Slider bla bla marketing stuff...
@@ -25,10 +25,16 @@ class TmParallaxSlider extends PageLinesSection {
 	function section_head(){
 		$stage_height = ploption('tm_parallax_stage_height');
 		$auto = ploption('tm_parallaxtimeout');
-        $speed = ploption('tm_parallaxfspeed');
+		$speed = ploption('tm_parallaxfspeed');
 	?>
-		<style type="text/css" media="all">
-			.some{background:#dddddd;}
+		<style type="text/css" media="screen">
+			#<?=$this->id?> .content{
+				width:100% !important;
+				min-width:100% !important;
+			}
+			#<?=$this->id?> .content-pad{
+				padding:0px;
+			}
 			.pxs_container,
 			.pxs_bg div,
 			ul.pxs_slider,
@@ -47,11 +53,10 @@ class TmParallaxSlider extends PageLinesSection {
 		</style>
 		<script>
 			jQuery(function($) {
-				console.log('WTH')
 				var $pxs_container	= $('#pxs_container');
 				$pxs_container.parallaxSlider({
 					auto            : <?=$auto?>,
-					thumbRotation   : true,
+					thumbRotation   : false,
 					speed			: <?=$speed?>
 				});
 			});
