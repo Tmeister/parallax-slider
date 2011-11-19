@@ -1,11 +1,11 @@
 /*Pagelines stuff*/
 
-#tm-section-parallex-slider .content{
+#section-parallex-slider .content{
 	width:100% !important;
 	min-width:100% !important;
 }
 
-#tm-section-parallex-slider .content-pad{
+#section-parallex-slider .content-pad{
 	padding:0px;
 }
 /* Slider Style */
