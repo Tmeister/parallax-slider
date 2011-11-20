@@ -1,15 +1,17 @@
 <?php
 /*
-	Section: Parallax Slider for Features
+	Section: Parallax Slider
 	Author: Enrique Chavez
 	Author URI: http://www.klr20mg.com
-	Version: 0.2
-	Description: Awesome slider for your featured post
+	Version: 0.1
+	Description: Awesome slider with a pseudo3D effect. Use a base color and 2 layers for the background. You can have infinite combinations.
 	Class Name: TmParallaxSlider
 	Cloning: false
 	Demo: http://dev.tmeister.net
  	External: http://dev.tmeister.net
- 	Long: Parallax Slider bla bla marketing stuff...
+ 	Long: <h2>Enhance your website by adding a unique and attractive slider!</h2>Create an unlimited number of sliders and place them anywhere on your website with ease.
+
+
 */
 
 class TmParallaxSlider extends PageLinesSection {
@@ -86,6 +88,21 @@ class TmParallaxSlider extends PageLinesSection {
 		$limit = ploption('tm_parallax_items');
 		$set = ploption('tm_parallax_set');
 		$sliders = $this->get_parallax_sliders($set, $limit);
+
+		if( ! ploption('tm_parallax_stage_height') || 
+			! ploption('tm_parallax_items') ||
+			! ploption('tm_parallax_set') ||
+			! ploption('tm_parallaxtimeout') ||
+			! ploption('tm_parallaxfspeed')
+			)
+		{
+			echo setup_section_notify($this, __('Please set up the options for your slider.', $this->domain) );
+			return;	
+		}
+		if( !count($sliders) ){
+			echo setup_section_notify($this, __('Sorry,there is no sliders to display.', $this->domain) );
+			return;
+		}
 
 	?>
 		<div id="pxs_container" class="pxs_container">
