@@ -171,13 +171,9 @@ class TmParallaxSlider extends PageLinesSection {
 		
 		$attachments = get_children( $args );
 		if ($attachments) {
-			print_r( $attachment );
 			foreach($attachments as $attachment) {
-				echo "|entra al FOREACH";
 				$image_attributes = wp_get_attachment_image_src( $attachment->ID, $size )  ? wp_get_attachment_image_src( $attachment->ID, $size ) : wp_get_attachment_image_src( $attachment->ID, 'full' );
-				
 				return wp_get_attachment_thumb_url( $attachment->ID );
-
 			}
 		}else{
 			/***
