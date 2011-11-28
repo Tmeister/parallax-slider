@@ -5,32 +5,20 @@
 			var $pxs_container 	= $(this),
 			o 				= $.meta ? $.extend({}, opts, $pxs_container.data()) : opts;
 			
-			//the main slider
 			var $pxs_slider		= $('.pxs_slider',$pxs_container),
-			//the elements in the slider
 			$elems			= $pxs_slider.children(),
-			//total number of elements
 			total_elems		= $elems.length,
-			//the navigation buttons
 			$pxs_next		= $('.pxs_next',$pxs_container),
 			$pxs_prev		= $('.pxs_prev',$pxs_container),
-			//the bg images
 			$pxs_bg1		= $('.pxs_bg1',$pxs_container),
 			$pxs_bg2		= $('.pxs_bg2',$pxs_container),
 			$pxs_bg3		= $('.pxs_bg3',$pxs_container),
-			//current image
 			current			= 0,
-			//the thumbs container
 			$pxs_thumbnails = $('.pxs_thumbnails',$pxs_container),
-			//the thumbs
 			$thumbs			= $pxs_thumbnails.children(),
-			//the interval for the autoplay mode
 			slideshow,
-			//the loading image
 			$pxs_loading	= $('.pxs_loading',$pxs_container),
 			$pxs_slider_wrapper = $('.pxs_slider_wrapper',$pxs_container);
-				
-			//first preload all the images
 			var loaded		= 0,
 			$images		= $pxs_slider_wrapper.find('img');
 				
@@ -42,14 +30,8 @@
 						$pxs_loading.hide();
 						$pxs_slider_wrapper.show();
 							
-						//one images width (assuming all images have the same sizes)
 						var one_image_w		= $pxs_slider.find('img:first').width();
 				
-						/*
-						need to set width of the slider,
-						of each one of its elements, and of the
-						navigation buttons
-						 */
 						setWidths($pxs_slider,
 						$elems,
 						total_elems,
@@ -60,10 +42,6 @@
 						$pxs_next,
 						$pxs_prev);
 				
-						/*
-							set the width of the thumbs
-							and spread them evenly
-						 */
 						$pxs_thumbnails.css({
 							'width'			: one_image_w + 'px',
 							'margin-left' 	: -one_image_w/2 + 'px'
@@ -74,7 +52,6 @@
 							var left	= spaces*(i+1) - $this.width()/2;
 							$this.css('left',left+'px');
 							
-							//hovering the thumbs animates them up and down
 							$this.bind('mouseenter',function(){
 								$(this).stop().animate({top:'-10px'},100);
 							}).bind('mouseleave',function(){
@@ -82,10 +59,8 @@
 							});
 						});
 							
-						//make the first thumb be selected
 						highlight($thumbs.eq(0));
 							
-						//slide when clicking the navigation buttons
 						$pxs_next.bind('click',function(){
 							++current;
 							if(current >= total_elems)
@@ -125,9 +100,7 @@
 							o.easingBg);
 						});
 				
-						/*
-						clicking a thumb will slide to the respective image
-						 */
+						
 						$thumbs.bind('click',function(){
 							var $thumb	= $(this);
 							highlight($thumb);
@@ -147,10 +120,7 @@
 				
 					
 				
-						/*
-						activate the autoplay mode if
-						that option was specified
-						 */
+						
 						if(o.auto != 0){
 							o.circular	= true;
 							slideshow	= setInterval(function(){
@@ -158,13 +128,7 @@
 							},o.auto);
 						}
 				
-						/*
-						when resizing the window,
-						we need to recalculate the widths of the
-						slider elements, based on the new windows width.
-						we need to slide again to the current one,
-						since the left of the slider is no longer correct
-						 */
+						
 						$(window).resize(function(){
 							w_w	= $(window).width();
 							setWidths($pxs_slider,$elems,total_elems,$pxs_bg1,$pxs_bg2,$pxs_bg3,one_image_w,$pxs_next,$pxs_prev);
@@ -179,8 +143,6 @@
 						});
 						$(window).resize();	
 					}
-				}).error(function(){
-					alert('here')
 				}).attr('src',$img.attr('src'));
 			});
 				

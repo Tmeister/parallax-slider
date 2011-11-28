@@ -96,6 +96,26 @@ class TmParallaxSlider extends PageLinesSection {
 			return;
 		}
 
+		/**********************************************************************
+		* We have slider, but check for images
+		***********************************************************************/
+		$found = false;
+		foreach ($sliders as $post){
+			setup_postdata($post); 
+			$oset = array('post_id' => $post->ID);
+			$image = $this->get_image( $post->ID, 'parallax_thumb', plmeta('parallax_image', $oset) );
+			if( strlen($image) ){
+				$found = true;
+			}
+		}
+		if( ! $found ){
+			echo setup_section_notify($this, __('There is Parallax Sliders, but none had images.', $this->ptID), get_admin_url().'edit.php?post_type=tm_parallax', 'Please upload images' );
+			return;
+		}
+		/**********************************************************************
+		* At least one slider have a image. go..
+		**********************************************************************/
+
 	?>
 		<div id="pxs_container" class="pxs_container">
 			<div class="pxs_bg">
