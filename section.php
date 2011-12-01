@@ -26,9 +26,14 @@ class TmParallaxSlider extends PageLinesSection {
 		add_image_size('parallax_thumb', 80, 55, true);
 	}
 
-	function section_head(){
-		$auto = ( ploption('tm_parallaxtimeout') ) ? ploption('tm_parallaxtimeout') : '7000';
-		$speed   = ( ploption('tm_parallaxfspeed') ) ? ploption('tm_parallaxfspeed') : '1000';
+	function section_head($clone_id =  null){
+
+		global $pagelines_ID;
+
+		$oset  = array('post_id' => $pagelines_ID, 'clone_id' => $clone_id);
+		
+		$auto  = ( ploption('tm_parallaxtimeout', $oset) ) ? ploption('tm_parallaxtimeout', $oset) : '7000';
+		$speed = ( ploption('tm_parallaxfspeed', $oset) ) ? ploption('tm_parallaxfspeed', $oset) : '1000';
 	?>
 		<style type="text/css" media="screen">
 			#<?=$this->id?> .content{
@@ -45,13 +50,13 @@ class TmParallaxSlider extends PageLinesSection {
 				height: 470px !important;
 			}
 			#pxs_container{
-				background: <?=ploption('tm_parallax_background')?> !important;
+				background: <?=ploption('tm_parallax_background', $oset)?> !important;
 			}
 			.pxs_bg .pxs_bg1{
-				background:url(<?=ploption('tm_parallax_background_one')?>) !important;
+				background:url(<?=ploption('tm_parallax_background_one', $oset)?>) !important;
 			}
 			.pxs_bg .pxs_bg2{
-				background:url(<?=ploption('tm_parallax_background_two')?>) !important;
+				background:url(<?=ploption('tm_parallax_background_two', $oset)?>) !important;
 			}
 		</style>
 		<script>

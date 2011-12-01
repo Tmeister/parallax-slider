@@ -3,17 +3,11 @@
 	position:relative;
 	overflow:hidden;
 }
-.pxs_bg{
-	background:transparent url(images/bg.png) repeat top left;
-}
 .pxs_bg div{
 	position:absolute;
 	top:0px;
 	left:0px;
-	width:7584px; /*1264px window width times number of images*/
-	background-repeat:repeat;
-	background-position:top left;
-	background-color:transparent;
+	width:6320px;
 }
 .pxs_slider_wrapper{
 	display:none;
@@ -35,9 +29,9 @@ ul.pxs_slider li{
 ul.pxs_slider li img{
 	display:block;
 	margin:35px auto 0px auto;
-	-moz-box-shadow:0px 0px 7px #222;
-	-webkit-box-shadow:0px 0px 7px #222;
-	box-shadow:0px 0px 7px #222;
+	-moz-box-shadow:0px 0px 10px #222;
+	-webkit-box-shadow:0px 0px 10px #222;
+	box-shadow:0px 0px 10px #222;
 	border: 10px solid transparent;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
@@ -55,9 +49,9 @@ ul.pxs_thumbnails li{
 }
 ul.pxs_thumbnails li img{
 	border: 5px solid #FFFFFF;
-	-moz-box-shadow:1px 1px 7px #555;
-	-webkit-box-shadow:1px 1px 7px #555;
-	box-shadow:1px 1px 7px #555;
+	-moz-box-shadow:1px 1px 5px #555;
+	-webkit-box-shadow:1px 1px 5px #555;
+	box-shadow:1px 1px 5px #555;
 	cursor:pointer;
 	display:block;
 	opacity:0.7;
