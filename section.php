@@ -7,8 +7,8 @@
 	Description: Awesome slider with a pseudo3D effect. Use a base color and 2 layers for the background. You can have infinite combinations.
 	Class Name: TmParallaxSlider
 	Cloning: false
-	Demo: http://dev.tmeister.net
- 	External: http://dev.tmeister.net
+	Demo: http://pagelines.tmeister.net/parallax-slider/
+ 	External: http://pagelines.tmeister.net/parallax-slider/
  	Long: <h2>Enhance your website by adding a unique and attractive slider!</h2>Create an unlimited number of sliders and place them anywhere on your website with ease.
 
 
