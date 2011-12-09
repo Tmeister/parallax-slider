@@ -191,7 +191,7 @@ class TmParallaxSlider extends PageLinesSection {
 					if( is_array( getimagesize($full) )){
 						return preg_replace('/(\.gif|\.jpg|\.png)/', '-900x350$1', $url);
 					}else{
-						return -2;
+						return $url;
 					}
 					break; 
 				case 'parallax_thumb':
