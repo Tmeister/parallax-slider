@@ -3,13 +3,13 @@
 	Section: Parallax Slider
 	Author: Enrique Chavez
 	Author URI: http://www.klr20mg.com
-	Version: 0.1
-	Description: Awesome slider with a pseudo3D effect. Use a base color and 2 layers for the background. You can have infinite combinations.
+	Version: 0.1.1
+	Description: Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
 	Class Name: TmParallaxSlider
 	Cloning: false
 	Demo: http://pagelines.tmeister.net/parallax-slider/
  	External: http://pagelines.tmeister.net/parallax-slider/
- 	Long: <h2>Enhance your website by adding a unique and attractive slider!</h2>Create an unlimited number of sliders and place them anywhere on your website with ease.
+ 	Long: Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
 
 
 */
@@ -108,13 +108,14 @@ class TmParallaxSlider extends PageLinesSection {
 		foreach ($sliders as $post){
 			setup_postdata($post); 
 			$oset = array('post_id' => $post->ID);
-			$image = $this->get_image( $post->ID, 'parallax_thumb', plmeta('parallax_image', $oset) );
-			if( strlen($image) ){
+			$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset) );
+			//print_r( $image );
+			if( strlen($image) && $image != -2 ){
 				$found = true;
 			}
 		}
 		if( ! $found ){
-			echo setup_section_notify($this, __('There is Parallax Sliders, but none had images.', $this->ptID), get_admin_url().'edit.php?post_type=tm_parallax', 'Please upload images' );
+			echo setup_section_notify($this, __('There is Parallax Sliders, but none had images.<br>Please, verify that the images you used are bigger than 900px X 350px.', $this->ptID), get_admin_url().'edit.php?post_type=tm_parallax', 'Please upload images');
 			return;
 		}
 		/**********************************************************************
@@ -186,7 +187,13 @@ class TmParallaxSlider extends PageLinesSection {
 			**/
 			switch( $size ){
 				case 'parallax_slider':
-					return preg_replace('/(\.gif|\.jpg|\.png)/', '-900x350$1', $url);
+					$full = preg_replace('/(\.gif|\.jpg|\.png)/', '-900x350$1', $url); 
+					if( is_array( getimagesize($full) )){
+						return preg_replace('/(\.gif|\.jpg|\.png)/', '-900x350$1', $url);
+					}else{
+						return -2;
+					}
+					break; 
 				case 'parallax_thumb':
 					return preg_replace('/(\.gif|\.jpg|\.png)/', '-80x55$1', $url);
 					break;
