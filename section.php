@@ -3,13 +3,28 @@
 	Section: Parallax Slider
 	Author: Enrique Chavez
 	Author URI: http://www.klr20mg.com
-	Version: 0.1.1
+	Version: 0.1.2
 	Description: Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
 	Class Name: TmParallaxSlider
 	Cloning: false
 	Demo: http://pagelines.tmeister.net/parallax-slider/
  	External: http://pagelines.tmeister.net/parallax-slider/
  	Long: Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
+
+
+ 	Changelog:	
+
+ 	Version 0.1.2
+ 		- Bug Fix, $oset for internal pages settings. 
+
+ 	Version 0.1.1
+ 		- Bug Fix, Show images smaller than 900x350   
+
+ 	Version 0.1 
+ 		Public Release
+ 	
+
+
 
 
 */
@@ -92,24 +107,27 @@ class TmParallaxSlider extends PageLinesSection {
 
 	function section_template( $clone_id = null ) {
 		global $post;
-		$limit = ( ploption('tm_parallax_items') ) ? ploption('tm_parallax_items') : '5';
-		$set = ploption('tm_parallax_set');
+		global $pagelines_ID;
+		
+		$oset = array('post_id' => $pagelines_ID, 'clone_id' => $clone_id);
+
+		$limit = ( ploption('tm_parallax_items', $oset) ) ? ploption('tm_parallax_items', $oset) : '5';
+		$set = ploption('tm_parallax_set', $oset);
 		$sliders = $this->get_parallax_sliders($set, $limit);
 
 		if( !count($sliders) ){
 			echo setup_section_notify($this, __('Sorry,there is no sliders to display.', $this->ptID) );
 			return;
 		}
-
+		$current_page_post = $post;
 		/**********************************************************************
 		* We have slider, but check for images
 		***********************************************************************/
 		$found = false;
 		foreach ($sliders as $post){
 			setup_postdata($post); 
-			$oset = array('post_id' => $post->ID);
-			$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset) );
-			//print_r( $image );
+			$oset_in = array('post_id' => $post->ID);
+			$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset_in) );
 			if( strlen($image) && $image != -2 ){
 				$found = true;
 			}
@@ -134,8 +152,8 @@ class TmParallaxSlider extends PageLinesSection {
 					<?php 
 						foreach ($sliders as $post):
 							setup_postdata($post); 
-							$oset = array('post_id' => $post->ID);
-							$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset) );
+							$oset_in = array('post_id' => $post->ID);
+							$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset_in) );
 					?>
 						<li>
 							<a href="<?=plmeta('parallax-link-url', $oset)?>">
@@ -152,13 +170,13 @@ class TmParallaxSlider extends PageLinesSection {
 					<?php 
 						foreach ($sliders as $post): 
 							setup_postdata($post); 
-							$oset = array('post_id' => $post->ID);
-							$image = $this->get_image( $post->ID, 'parallax_thumb', plmeta('parallax_image', $oset) );
+							$oset_in = array('post_id' => $post->ID);
+							$image = $this->get_image( $post->ID, 'parallax_thumb', plmeta('parallax_image', $oset_in) );
 						?>
 						<li>
 							<img src="<?=$image?>" title="<?the_title()?>">
 						</li>
-					<?php endforeach ?>
+					<?php endforeach; $post = $current_page_post; ?>
 				</ul>
 			</div>
 		</div>
