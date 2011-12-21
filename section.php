@@ -9,24 +9,7 @@
 	Cloning: false
 	Demo: http://pagelines.tmeister.net/parallax-slider/
  	External: http://pagelines.tmeister.net/parallax-slider/
- 	Long: Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
-
-
- 	Changelog:	
-
- 	Version 0.1.2
- 		- Bug Fix, $oset for internal pages settings. 
-
- 	Version 0.1.1
- 		- Bug Fix, Show images smaller than 900x350   
-
- 	Version 0.1 
- 		Public Release
  	
-
-
-
-
 */
 
 class TmParallaxSlider extends PageLinesSection {
