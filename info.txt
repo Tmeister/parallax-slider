@@ -2,6 +2,21 @@
 
 Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
 
+* Full Width Slider
+* Thumbnail Navigation
+* Pseudo 3D effect using 2 backgrounds
+* Custom Post and Categories
+* 7 options to play with
+
+You can [follow me at Twitter](http://twitter.com/tmeister "Tmeister")  for news of next versions and new releases.
+
+Also you can see my other sections
+
+* [Menu always On Top](http://www.pagelines.com/store/sections/always-on-top-menu/ "Menu always On Top")
+* [Infinite Carousel](http://www.pagelines.com/store/sections/infinite-carousel/ "Infinite Carousel")
+* [Social Surf Menu](http://www.pagelines.com/store/sections/social-surf-menu/ "Social Surf Menu")
+
+
 == Features ==
 
 * Full Width Slider
@@ -12,6 +27,8 @@ Use the Parallax slider to add a new feature slider look to your website. Slides
 
 == Changelog ==
 
+= 1.0 = ( Jan 17, 2012 )
+* Remove php short tag syntax.
 
 = 0.1.2 =
 * Bug Fix, $oset for internal pages settings. 

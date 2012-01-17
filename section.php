@@ -34,11 +34,11 @@ class TmParallaxSlider extends PageLinesSection {
 		$speed = ( ploption('tm_parallaxfspeed', $oset) ) ? ploption('tm_parallaxfspeed', $oset) : '1000';
 	?>
 		<style type="text/css" media="screen">
-			#<?=$this->id?> .content{
+			#<?php echo $this->id?> .content{
 				width:100% !important;
 				min-width:100% !important;
 			}
-			#<?=$this->id?> .content-pad{
+			#<?php echo $this->id?> .content-pad{
 				padding:0px;
 			}
 			.pxs_container,
@@ -48,22 +48,22 @@ class TmParallaxSlider extends PageLinesSection {
 				height: 470px !important;
 			}
 			#pxs_container{
-				background: <?=ploption('tm_parallax_background', $oset)?> !important;
+				background: <?php echo ploption('tm_parallax_background', $oset)?> !important;
 			}
 			.pxs_bg .pxs_bg1{
-				background:url(<?=ploption('tm_parallax_background_one', $oset)?>) !important;
+				background:url(<?php echo ploption('tm_parallax_background_one', $oset)?>) !important;
 			}
 			.pxs_bg .pxs_bg2{
-				background:url(<?=ploption('tm_parallax_background_two', $oset)?>) !important;
+				background:url(<?php echo ploption('tm_parallax_background_two', $oset)?>) !important;
 			}
 		</style>
 		<script>
 			jQuery(function($) {
 				var $pxs_container	= $('#pxs_container');
 				$pxs_container.parallaxSlider({
-					auto            : <?=$auto?>,
+					auto            : <?php echo $auto?>,
 					thumbRotation   : false,
-					speed			: <?=$speed?>
+					speed			: <?php echo $speed?>
 				});
 			});
         </script>
@@ -129,7 +129,7 @@ class TmParallaxSlider extends PageLinesSection {
 				<div class="pxs_bg1"></div>
 				<div class="pxs_bg2"></div>
 			</div>
-			<div class="pxs_loading"><?= ( $sliders ) ? __('Loading images...', $this->ptID) : __('Whoops, No images', $this->ptID)?> </div>
+			<div class="pxs_loading"><?php echo  ( $sliders ) ? __('Loading images...', $this->ptID) : __('Whoops, No images', $this->ptID)?> </div>
 			<div class="pxs_slider_wrapper">
 				<ul class="pxs_slider">
 					<?php 
@@ -139,8 +139,8 @@ class TmParallaxSlider extends PageLinesSection {
 							$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset_in) );
 					?>
 						<li>
-							<a href="<?=plmeta('parallax-link-url', $oset)?>">
-								<img src="<?=$image?>" alt="<?the_title()?>">
+							<a href="<?php echo plmeta('parallax-link-url', $oset)?>">
+								<img src="<?php echo $image?>" alt="<?the_title()?>">
 							</a>
 						</li>
 					<?php endforeach ?>
@@ -157,7 +157,7 @@ class TmParallaxSlider extends PageLinesSection {
 							$image = $this->get_image( $post->ID, 'parallax_thumb', plmeta('parallax_image', $oset_in) );
 						?>
 						<li>
-							<img src="<?=$image?>" title="<?the_title()?>">
+							<img src="<?php echo $image?>" title="<?the_title()?>">
 						</li>
 					<?php endforeach; $post = $current_page_post; ?>
 				</ul>
