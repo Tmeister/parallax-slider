@@ -99,7 +99,7 @@ class TmParallaxSlider extends PageLinesSection {
 		$sliders = $this->get_parallax_sliders($set, $limit);
 
 		if( !count($sliders) ){
-			echo setup_section_notify($this, __('Sorry,there is no sliders to display.', $this->ptID) );
+			echo setup_section_notify($this, __('Sorry,there are no slides to display.', $this->ptID), get_admin_url().'edit.php?post_type=tm_parallax', __('Please create some slides', $this->ptID));
 			return;
 		}
 		$current_page_post = $post;
@@ -116,7 +116,7 @@ class TmParallaxSlider extends PageLinesSection {
 			}
 		}
 		if( ! $found ){
-			echo setup_section_notify($this, __('There is Parallax Sliders, but none had images.<br>Please, verify that the images you used are bigger than 900px X 350px.', $this->ptID), get_admin_url().'edit.php?post_type=tm_parallax', 'Please upload images');
+			echo setup_section_notify($this, __('There are Parallax Slides, but no one had images.<br>Please, verify that the images you used are bigger than 900px X 350px.', $this->ptID), get_admin_url().'edit.php?post_type=tm_parallax', 'Please upload images');
 			return;
 		}
 		/**********************************************************************
@@ -139,7 +139,7 @@ class TmParallaxSlider extends PageLinesSection {
 							$image = $this->get_image( $post->ID, 'parallax_slider', plmeta('parallax_image', $oset_in) );
 					?>
 						<li>
-							<a href="<?php echo plmeta('parallax-link-url', $oset)?>">
+							<a href="<?php echo plmeta('parallax-link-url', $oset_in)?>">
 								<img src="<?php echo $image?>" alt="<?the_title()?>">
 							</a>
 						</li>
@@ -189,7 +189,7 @@ class TmParallaxSlider extends PageLinesSection {
 			switch( $size ){
 				case 'parallax_slider':
 					$full = preg_replace('/(\.gif|\.jpg|\.png)/', '-900x350$1', $url); 
-					if( is_array( getimagesize($full) )){
+					if( is_array( @getimagesize($full) )){
 						return preg_replace('/(\.gif|\.jpg|\.png)/', '-900x350$1', $url);
 					}else{
 						return $url;
@@ -198,8 +198,8 @@ class TmParallaxSlider extends PageLinesSection {
 				case 'parallax_thumb':
 					return preg_replace('/(\.gif|\.jpg|\.png)/', '-80x55$1', $url);
 					break;
-				default:
-					return false;
+				defaultreturn
+					: false;
 			}
 			
 		}
@@ -227,7 +227,6 @@ class TmParallaxSlider extends PageLinesSection {
 		$page_metatab_array = array(
 
 			'tm_parallax_set' 	=> array(
-				'version' 		=> 'pro',
 				'default'		=> 'default-parallax',
 				'type' 			=> 'select_taxonomy',
 				'taxonomy_id'	=> $this->taxID,
@@ -238,7 +237,6 @@ class TmParallaxSlider extends PageLinesSection {
 			),
 
 			'tm_parallax_items' => array(
-				'version' 		=> 'pro',
 				'default'		=> 5,
 				'type' 			=> 'text_small',
 				'inputlabel'	=> 'Number of sliders to show',
@@ -248,7 +246,6 @@ class TmParallaxSlider extends PageLinesSection {
 
 			'tm_parallax_background' => array(
 				'default' 		=> '#ffffff',
-				'version'		=> 'pro',
 				'type' 			=> 'colorpicker',
 				'inputlabel' 	=> 'First Layer Background Color',
 				'title' 		=> 'Parallax container background color',
@@ -257,7 +254,6 @@ class TmParallaxSlider extends PageLinesSection {
 			),
 
 			'tm_parallax_background_one' => array(
-				'version'		=> 'pro',
 				'type' 			=> 'image_upload',
 				'inputlabel' 	=> 'Background image',
 				'title' 		=> 'Second Layer Image',
@@ -266,7 +262,6 @@ class TmParallaxSlider extends PageLinesSection {
 			),
 
 			'tm_parallax_background_two' => array(
-				'version'		=> 'pro',
 				'type' 			=> 'image_upload',
 				'inputlabel' 	=> 'Background image',
 				'title' 		=> 'Third Layer Image',
@@ -276,7 +271,6 @@ class TmParallaxSlider extends PageLinesSection {
 
 			'tm_parallaxtimeout' => array(
 				'default' 		=> '7000',
-				'version'		=> 'pro',
 				'type' 			=> 'text_small',
 				'inputlabel' 	=> 'Timeout (ms)',
 				'title' 		=> 'Parallax Viewing Time (Timeout)',
@@ -286,7 +280,6 @@ class TmParallaxSlider extends PageLinesSection {
 			
 			'tm_parallaxfspeed' => array(
 				'default' 		=> 1000,
-				'version'		=> 'pro',
 				'type' 			=> 'text_small',
 				'inputlabel' 	=> 'Transition Speed (ms)',
 				'title' 		=> 'Parallax Transition Time (Timeout)',
