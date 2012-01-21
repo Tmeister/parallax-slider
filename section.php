@@ -198,8 +198,8 @@ class TmParallaxSlider extends PageLinesSection {
 				case 'parallax_thumb':
 					return preg_replace('/(\.gif|\.jpg|\.png)/', '-80x55$1', $url);
 					break;
-				defaultreturn
-					: false;
+				default:
+					return false;
 			}
 			
 		}
