@@ -3,7 +3,7 @@
 	Section: Parallax Slider
 	Author: Enrique Chavez
 	Author URI: http://www.klr20mg.com
-	Version: 1.0
+	Version: 1.1
 	Description: Use the Parallax slider to add a new feature slider look to your website. Slides display full size images and use thumbnails to help users find the information they want.
 	Class Name: TmParallaxSlider
 	Cloning: false
