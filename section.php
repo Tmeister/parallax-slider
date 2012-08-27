@@ -140,7 +140,7 @@ class TmParallaxSlider extends PageLinesSection {
 					?>
 						<li>
 							<a href="<?php echo plmeta('parallax-link-url', $oset_in)?>">
-								<img src="<?php echo $image?>" alt="<?the_title()?>">
+								<img src="<?php echo $image?>" alt="<?php the_title()?>">
 							</a>
 						</li>
 					<?php endforeach ?>
@@ -157,7 +157,7 @@ class TmParallaxSlider extends PageLinesSection {
 							$image = $this->get_image( $post->ID, 'parallax_thumb', plmeta('parallax_image', $oset_in) );
 						?>
 						<li>
-							<img src="<?php echo $image?>" title="<?the_title()?>">
+							<img src="<?php echo $image?>" title="<?php the_title()?>">
 						</li>
 					<?php endforeach; $post = $current_page_post; ?>
 				</ul>
